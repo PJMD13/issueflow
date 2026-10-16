@@ -1,0 +1,1 @@
+16 ejercicios PHP básico. ENUNCIADOS.md para estudiantes; SOLUCIONARIO.md para docentes. alumnos/ contiene plantillas; soluciones/ contiene archivos ejecutables comentados. Ejecutar desde un servidor PHP local.
