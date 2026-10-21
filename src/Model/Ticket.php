@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Model;
 
 /*
-Ticket representa una incidencia en IssueFlow como
+Ticket representa una incidencia en IssueFloew como
 un objeto PHP
 */
 final class Ticket
@@ -42,7 +42,11 @@ final class Ticket
         return $this->status;
     }
 
-public static function getAllTickets(): array
+    /* Mock data de tickets: Data simulada de prueba. La data real
+    se obtendrá luego de una petición a la base de datos. 
+    La data se generará con un método estático que devuelva un array de tickets.
+    */
+    public static function getAllTickets(): array
     {
         return [
             new Ticket(
@@ -72,12 +76,16 @@ public static function getAllTickets(): array
         ];
     }
 
-    /* Metodo find que en cuentra un ticket en el listado, dado su id
-    ?Ticket quiere decir qeu el método puede devolver o un Ticket o null */
+    /* Metodo find que encuentra un ticket en el listado, dado su id 
+    ?Ticket quiere decir que el método puede devolver o un Ticket o null
+    */
     public static function find(string $id): ?Ticket
     {
+        /* array_find(), disponible en PHP 8.4+ devuelve el primer elemento
+        del array que cumple con la condición indicada por la función callback.
+        Si no encuentra ningún elemento que cumpla la condición devuelve null */
         return array_find(
-            Tickets::getAllTickets(),
+            Ticket::getAllTickets(),
             fn (Ticket $ticket): bool => $ticket->getId() === $id
         );
     }
