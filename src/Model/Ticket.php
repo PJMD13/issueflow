@@ -22,6 +22,14 @@ final class Ticket
         private TicketStatus $status
     )
     {
+        /* Validar el formato de id: INC- seguido de cuatro dígitos
+            Para ello usamos una regex: regular expression (expresión regular en 'regex'): '/^INC-\<d>4$/'
+            Si el formato Id no es correcto da error.
+        */
+        if(preg_match('/^INC-\d{4}$/', $this->id) !== 1) {
+            throw new InvalidArgumentException('El Id no tiene un formato válido');
+        }
+    
         /* Normalización de title: Eliminar espacios en blanco antes y despuesś
         La función trin() elimina estos espacios
         */
@@ -86,7 +94,7 @@ final class Ticket
                 status: TicketStatus::InProgress
             ),
             new Ticket(
-                id: 'INC-1005',
+                id: 'INC-4532',
                 title: 'Olvidé mi contraseña',
                 priority: TicketPriority::Low,
                 status: TicketStatus::Open
