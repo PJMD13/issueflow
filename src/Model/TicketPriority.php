@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model;
 
-/*
+/* 
     Prioridades permitidas por el sistema IssueFlow
 
     El sistema permita solo cuatro prioridades: 'urgent',
@@ -17,7 +17,7 @@ enum TicketPriority: string
     case Normal = 'normal';
     case Low = 'low';
 
-    /* Un enum también puede tener métodos.
+    /*  Un enum también puede tener métodos.
         Implementamos el método getLabel() para
         asignar especificamente el texto que se quiere mostrar al usuario
     */

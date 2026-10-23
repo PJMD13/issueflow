@@ -22,23 +22,26 @@ final class Ticket
         private TicketStatus $status
     )
     {
-        /* Validar el formato de id: INC- seguido de cuatro dígitos
-            Para ello usamos una regex: regular expression (expresión regular en 'regex'): '/^INC-\<d>4$/'
-            Si el formato Id no es correcto da error.
+        /*  Validar el formato de id: INC- seguido de cuatro dígitos
+            Para ello usamos una regex: regular expression (expresión regular): '/^INC-\d{4}$/'
+            La función preg_match() compara una cadena de texto con la regex y devuelve 1
+            si la cadena de texto es válida
         */
         if(preg_match('/^INC-\d{4}$/', $this->id) !== 1) {
-            throw new InvalidArgumentException('El Id no tiene un formato válido');
+            throw new InvalidArgumentException('El id no tiene un formato válido');
         }
-    
-        /* Normalización de title: Eliminar espacios en blanco antes y despuesś
-        La función trin() elimina estos espacios
+
+        /* Normalización de title: Eliminar espacios en blanco antes y después 
+        La función trim() elimina estos espacios
         */
         $normalizedTitle = trim($title);
 
         /* Verifico que $normalizedTitle no sea una cadena de texto vacía */
         if ($normalizedTitle === '') {
-            throw new InvalidArgumentException('El título no puede estar vacio');
+            throw new InvalidArgumentException('El título no puede estar vacío');
         }
+
+        $this->title = $normalizedTitle;
     }
 
     /* Creamos los getters para cada uno de los atributos */
@@ -62,8 +65,8 @@ final class Ticket
         return $this->status;
     }
 
-    /* Metodo que devuelve true si el ticket tiene una
-    prioridad 'urgente', y false en caso contrario */
+    /* Método que devuelve true si el ticket tiene una
+    prioridad 'urgent', y false en caso contrario */
     public function isUrgent(): bool
     {
         return $this->priority->isUrgent();

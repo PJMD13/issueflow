@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Model;
 
-/*
-    Prioridades permitidas por el sistema IssueFlow
+/* 
+    Estados permitidos por el sistema IssueFlow
 
-    El sistema permita solo tres estados: 'open',
-    'in_progress', 'closed'
+    El sistema permita solo tres estados:
+    'open', 'in_progress', 'closed'
 */
 enum TicketStatus: string
 {
@@ -16,7 +16,7 @@ enum TicketStatus: string
     case InProgress = 'in_progress';
     case Closed = 'closed';
 
-    /* Un enum también puede tener métodos.
+    /*  Un enum también puede tener métodos.
         Implementamos el método getLabel() para
         asignar especificamente el texto que se quiere mostrar al usuario
     */
@@ -24,8 +24,8 @@ enum TicketStatus: string
     {
         return match ($this) {
             self::Open => 'Abierto',
-            self::InProgress => 'En progreso',
-            self::Closed => 'Cerrado',
+            self::InProgress => 'En Progreso',
+            self::Closed => 'Cerrado'
         };
     }
 
