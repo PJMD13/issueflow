@@ -8,10 +8,15 @@ use App\Contract\TicketCatalogInterface;
 use App\Model\Ticket;
 use App\Model\TicketPriority;
 use App\Model\TicketStatus;
+use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 
 /* Catálogo temporal de incidencias en memoria 
     Implementa la interfaz TicketCatalogInterface
 */
+/* Al usar AsAlias, por defecto, el contenedor de Symfony inyectará esta clase
+    cuando se soliciete una implementación de TicktCatalogInterfce */
+
+#[AsAlias(TicketCatalogInterface::class)]
 final class InMemoryTicketCatalog implements TicketCatalogInterface
 {
     // Atributo que almacena el listado de las incidencias
